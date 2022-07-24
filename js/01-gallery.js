@@ -27,20 +27,27 @@ imageGallery.insertAdjacentHTML('beforeend', imageMarkup);
 imageGallery.addEventListener('click', openImageClick);
 
 function openImageClick(evt) {
-    evt.prevntDefault();
+    evt.preventDefault();
 
+    // const description = evt.target.dataset.source;
     const instance = basicLightbox.create(
-        `<img src="${evt.target.dataset.source}" width="800" heigth="600">`,
-        {
-            onShow: () => window.addEventListener("keydown", onEscapeClick),
-            onClose: () => window.removeEventListener("keydown", onEscapeClick),
-        }
-    );
-    instance.show();
-    function onEscapeClick(evt) {
-        if (evt.code === "Escape") {
-            instance.close();
-        }
+`<img src="${evt.target.dataset.source}" width="800" heigth="600"/>`,
+   
+        
+            {
+                onShow: () => window.addEventListener("keydown", onEscapeClick),
+                onClose: () => window.removeEventListener("keydown", onEscapeClick),
+            }
+        );
+        instance.show();
+
+        function onEscapeClick(evt) {
+            if (evt.code === "Escape") {
+                instance.close();
+            }
        
-}
+        
+    
+    }  
+    
 }
